@@ -45,11 +45,33 @@ This is a Django application that uses Selenium for scraping and Celery for back
 
 ## CI/CD Deployment
 
-This project uses GitHub Actions for continuous deployment. Any push to the `main` branch will automatically trigger a deployment to AWS Elastic Beanstalk (Mumbai region).
+This project uses **GitHub Actions** for continuous deployment.
 
-    ```bash
-    eb init -p python-3.11 django-scraper-app --profile <your-aws-profile> --region ap-south-1
-    ```
+### **1. Setup (First Time Only)**
+To enable automated deployment, you must add your AWS credentials to the GitHub Repository Secrets:
+
+1.  Go to your GitHub Repository -> **Settings** -> **Secrets and variables** -> **Actions**.
+2.  Add the following secrets:
+    *   `AWS_ACCESS_KEY_ID`: Your AWS Access Key.
+    *   `AWS_SECRET_ACCESS_KEY`: Your AWS Secret Key.
+
+### **2. How to Deploy**
+Simply push any changes to the `main` branch. The deployment will happen automatically.
+
+```bash
+git add .
+git commit -m "Your update message"
+git push origin main
+```
+
+*   **View Logs:** Go to the "Actions" tab on GitHub to see the deployment progress.
+*   **App URL:** The URL of your deployed application will be printed in the logs at the end of the "Get Application URL" step.
+
+---
+
+## Manual Deployment (Fallback)
+If you need to deploy manually from your local machine:
+
 
 2.  **Create Environment:**
     ```bash

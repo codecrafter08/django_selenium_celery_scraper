@@ -44,3 +44,8 @@ jobs:
     - name: Deploy to Elastic Beanstalk
       run: |
         eb deploy django-scraper-env-mumbai
+
+    - name: Get Application URL
+      run: |
+        echo "Retrieving Application URL..."
+        eb status django-scraper-env-mumbai
