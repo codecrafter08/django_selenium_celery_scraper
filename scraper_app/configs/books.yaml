@@ -1,0 +1,9 @@
+url: "http://books.toscrape.com/"
+
+wait_for: "article.product_pod"
+
+listing:
+  product_card: "article.product_pod"
+  title: "h3 a"
+  price: "p.price_color"
+  link: "h3 a"

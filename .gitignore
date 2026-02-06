@@ -1,0 +1,25 @@
+# Python
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+media
+staticfiles
+
+# Environment variables
+.env
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Webdriver Manager
+.wdm/
+
+# Elastic Beanstalk
+.elasticbeanstalk/
