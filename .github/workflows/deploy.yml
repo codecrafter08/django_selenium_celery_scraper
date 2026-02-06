@@ -1,0 +1,46 @@
+name: Deploy to Elastic Beanstalk
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install awsebcli
+
+    - name: Run Django Checks
+      run: |
+        python manage.py check
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-south-1
+
+    - name: Remove local profile from config
+      # The config.yml has a local profile 'rishab08_work' which won't exist in CI.
+      # We remove it so EB CLI uses the credentials configured above.
+      run: |
+        sed -i '/profile:/d' .elasticbeanstalk/config.yml
+
+    - name: Deploy to Elastic Beanstalk
+      run: |
+        eb deploy django-scraper-env-mumbai
