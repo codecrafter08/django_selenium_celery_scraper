@@ -45,14 +45,14 @@ This is a Django application that uses Selenium for scraping and Celery for back
 
 ## Deployment to AWS Elastic Beanstalk
 
-1.  **Initialize EB Application:**
+1.  **Initialize EB Application (if not already done):**
     ```bash
-    eb init -p python-3.11 django-scraper-app --profile <your-aws-profile>
+    eb init -p python-3.11 django-scraper-app --profile <your-aws-profile> --region ap-south-1
     ```
 
 2.  **Create Environment:**
     ```bash
-    eb create django-scraper-env
+    eb create django-scraper-env-mumbai
     ```
 
 3.  **Set Environment Variables:**
