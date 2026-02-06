@@ -43,9 +43,10 @@ This is a Django application that uses Selenium for scraping and Celery for back
     celery -A myproject worker --loglevel=info
     ```
 
-## Deployment to AWS Elastic Beanstalk
+## CI/CD Deployment
 
-1.  **Initialize EB Application (if not already done):**
+This project uses GitHub Actions for continuous deployment. Any push to the `main` branch will automatically trigger a deployment to AWS Elastic Beanstalk (Mumbai region).
+
     ```bash
     eb init -p python-3.11 django-scraper-app --profile <your-aws-profile> --region ap-south-1
     ```
